@@ -21,7 +21,7 @@ routes.post('/add-user', addUser);
 routes.post('/remove-user', deleteUser);
 routes.post('/update-user', updateUser);
 routes.post('/login', login);
-routes.get('get-user', getUser);
+routes.get('/get-user', getUser);
 
 
 
