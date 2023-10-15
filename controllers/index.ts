@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 import { Info } from "../models/Info";
 import { Details } from "../models/Details";
 import { upload_cloud } from "../helpers/upload";
+import { Market } from "../models/Market";
 
 
 export const apiIndex = async (req: Request, res: Response) => successResponse(res, 'API Working!');
@@ -48,6 +49,15 @@ export const GetInfo  = async (req: Request, res: Response)=>{
 			  'createdAt', 'updatedAt',  "fullname", "phoneNum", "address", "typeOfItemSold", "itemWorth", "comment", "image"]  }
 		    ],
     });
+    successResponse(res, "Successful", info)
+}
+
+
+
+
+export const GetMarkets = async (req: Request, res: Response)=>{
+     const market =  await Market.findAll({});
+     successResponse(res, "Successful", market)
 }
 
 

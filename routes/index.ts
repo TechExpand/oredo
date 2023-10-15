@@ -1,6 +1,6 @@
 // Import packages
 import { Router } from 'express';
-import { GetInfo, PostInfo, apiIndex} from '../controllers';
+import { GetInfo, GetMarkets, PostInfo, apiIndex} from '../controllers';
 import { uploads } from '../helpers/upload';
 
 
@@ -14,8 +14,9 @@ API CALL START
 // INDEX ROUTE TO SHOW API IS WORKING FINE.
 
 routes.get('/', apiIndex);
-routes.post("/send-info", PostInfo)
-routes.post("/get-info", uploads.array("image"), GetInfo)
+routes.get('/get-market', GetMarkets);
+routes.post("/send-info", uploads.array("image"), PostInfo)
+routes.post("/get-info",  GetInfo)
 
 
 
