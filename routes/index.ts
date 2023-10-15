@@ -1,6 +1,7 @@
 // Import packages
 import { Router } from 'express';
 import { GetInfo, PostInfo, apiIndex} from '../controllers';
+import { uploads } from '../helpers/upload';
 
 
 
@@ -14,7 +15,7 @@ API CALL START
 
 routes.get('/', apiIndex);
 routes.post("/send-info", PostInfo)
-routes.post("/get-info", GetInfo)
+routes.post("/get-info", uploads.array("image"), GetInfo)
 
 
 
