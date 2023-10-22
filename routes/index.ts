@@ -16,7 +16,7 @@ API CALL START
 routes.get('/', apiIndex);
 routes.get('/get-market', GetMarkets);
 routes.post("/send-info", uploads.array("image"), PostInfo)
-routes.post("/get-info",  GetInfo)
+routes.get("/get-info",  GetInfo)
 
 
 

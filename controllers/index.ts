@@ -43,7 +43,7 @@ export const PostInfo  = async (req: Request, res: Response)=>{
 
 export const GetInfo  = async (req: Request, res: Response)=>{
     const {marketId} = req.query
-     const info =  await Info.findOne({where:{marketId},
+     const info =  await Info.findAll({where:{marketId},
         include: [{ model: Details, 
             attributes:  [
 			  'createdAt', 'updatedAt',  "fullname", "phoneNum", "address", "typeOfItemSold", "itemWorth", "comment", "image"]  }
