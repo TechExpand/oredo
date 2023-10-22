@@ -5,7 +5,7 @@
 
 // Import packages
 import { Router } from 'express';
-import { apiIndex } from '../controllers';
+import { AddMarkets, apiIndex, deleteMarkets } from '../controllers';
 import { uploads } from '../helpers/upload';
 import { addUser, deleteUser, getUser, login, updateUser } from '../controllers/auth';
 
@@ -18,6 +18,8 @@ API CALL START
 
 // INDEX ROUTE TO SHOW API IS WORKING FINE.
 routes.post('/add-user', addUser);
+routes.post('/create-market', AddMarkets);
+routes.post('/remove-market', deleteMarkets);
 routes.post('/remove-user', deleteUser);
 routes.post('/update-user', updateUser);
 routes.post('/login', login);
