@@ -62,3 +62,19 @@ export const GetMarkets = async (req: Request, res: Response)=>{
 
 
 
+export const AddMarkets = async (req: Request, res: Response)=>{
+    const {name} = req.query;
+    const market =  await Market.create({name});
+    successResponse(res, "Successful", market)
+}
+
+
+
+export const deleteMarkets = async (req: Request, res: Response)=>{
+    const {id} = req.query;
+    const market =  await Market.findOne({where: {id}});
+    await market?.destroy();
+    successResponse(res, "Successful", market)
+}
+
+

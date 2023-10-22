@@ -22,7 +22,7 @@ export const login = async (req: Request, res: Response)=>{
 
 
 export const addUser = async (req: Request, res: Response)=>{
-  let { email } = req.body;
+  let { email } = req.query;
   const user = await Users.create({ where:{ email }})
   return successResponse(res, "Successful", user)
 }
@@ -37,8 +37,8 @@ export const getUser = async (req: Request, res: Response)=>{
 
 
 export const deleteUser = async (req: Request, res: Response)=>{
-  let { email } = req.body;
-  const user = await Users.findOne({ where:{ email }})
+  let { id } = req.query;
+  const user = await Users.findOne({ where:{ id }})
   await user?.destroy()
   return successResponse(res, "Agent Removed", user)
 }
@@ -48,7 +48,7 @@ export const deleteUser = async (req: Request, res: Response)=>{
 
 
 export const updateUser = async (req: Request, res: Response)=>{
-  let { email, status } = req.body;
+  let { email, status } = req.query;
   const user = await Users.findOne({ where:{ email }})
   await user?.update({status})
   return successResponse(res, "Agent Removed", user)
