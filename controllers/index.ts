@@ -46,7 +46,7 @@ export const GetInfo  = async (req: Request, res: Response)=>{
      const info =  await Info.findAll({where:{marketId},
         include: [{ model: Details, 
             attributes:  [
-			  'createdAt', 'updatedAt',  "fullname", "phoneNum", "address", "typeOfItemSold", "itemWorth", "comment", "image"]  }
+			  'createdAt', 'updatedAt',  "fullname", "phoneNum", "address", "typeOfItemSold", "itemWorth", "comment", "image", "id"]  }
 		    ],
     });
     successResponse(res, "Successful", info)
