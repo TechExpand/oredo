@@ -4,6 +4,8 @@ import { Info } from "../models/Info";
 import { Details } from "../models/Details";
 import { upload_cloud } from "../helpers/upload";
 import { Market } from "../models/Market";
+const fs = require("fs")
+const path = require("path")
 
 
 export const apiIndex = async (req: Request, res: Response) => successResponse(res, 'API Working!');
@@ -33,6 +35,17 @@ export const PostInfo  = async (req: Request, res: Response)=>{
           index++;
         }
       const details = await Details.bulkCreate(newData)
+  fs.readdir("./image", (err:any, files:any) => {
+        if (err) throw err;
+      
+        for (const file of files) {
+          fs.unlink(path.join("./image", file), (err:any) => {
+            if (err) throw err;
+          });
+        }
+        
+      });
+   
       successResponse(res, "Successful", {info, details})
       }
 }

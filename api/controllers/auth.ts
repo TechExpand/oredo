@@ -23,6 +23,8 @@ export const login = async (req: Request, res: Response)=>{
 
 export const addUser = async (req: Request, res: Response)=>{
   let { email } = req.query;
+  let findUser = await Users.findOne({where:{email}})
+  if(findUser) return successResponse(res, "Agent Already Added")
   const user = await Users.create({ email})
   return successResponse(res, "Successful", user)
 }
