@@ -15,6 +15,8 @@ const Info_1 = require("../models/Info");
 const Details_1 = require("../models/Details");
 const upload_1 = require("../helpers/upload");
 const Market_1 = require("../models/Market");
+const fs = require("fs");
+const path = require("path");
 const apiIndex = (req, res) => __awaiter(void 0, void 0, void 0, function* () { return (0, utility_1.successResponse)(res, 'API Working!'); });
 exports.apiIndex = apiIndex;
 const PostInfo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -35,12 +37,23 @@ const PostInfo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         for (let value of detail) {
             newData.push({
                 infoId: info.id, fullname: value.fullname, phoneNum: value.phoneNum,
-                address: value.address, typeOfItemSold: value.typeOfItemSold, itemWorth: value.itemWorth,
+                address: value.address, typeOfItemSold: value.typeOfItemSold,
+                itemWorth: value.itemWorth,
                 comment: value.comment, image: uploaded_url[index]
             });
             index++;
         }
         const details = yield Details_1.Details.bulkCreate(newData);
+        fs.readdir("./image", (err, files) => {
+            if (err)
+                throw err;
+            for (const file of files) {
+                fs.unlink(path.join("./image", file), (err) => {
+                    if (err)
+                        throw err;
+                });
+            }
+        });
         (0, utility_1.successResponse)(res, "Successful", { info, details });
     }
 });
