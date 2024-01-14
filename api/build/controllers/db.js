@@ -30,7 +30,8 @@ const sequelize = new sequelize_typescript_1.Sequelize(configSetup_1.default.DBN
     dialect: 'mysql',
     logging: false,
     dialectOptions: {
-        ssl: { require: true, rejectUnauthorized: false },
+        // ssl: { require: false, rejectUnauthorized: false },
+        ssl: false
     },
     models: [
         Users_1.Users,
